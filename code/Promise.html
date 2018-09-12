@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let promise = new Promise(function (resolve, reject) {
+            // resolve 成功
+            // reject 失败
+            let flag = true;
+            if (flag) {
+                resolve('成功');
+            } else {
+                reject('失败');
+            }
+        });
+
+        // promise.then(success => {
+        //     console.log(success);
+        // }, error => {
+        //     console.log(error);
+        // });
+        //  promise.then(success => {
+        //      console.log(success);
+        //  }).catch(error => {
+        //      console.log(error);
+        //  })
+        // promise.resolve('aa')   //  将现有的转成Promise对象 且状态是resolve
+        // promise.then(resolve => {
+        //     resolve('aaa');
+        // })
+
+        Promise.all([p1,p2,p3]).then();    //把Promise打包  必须确保所有的Promise对象都是resolve
+        Promise.race([p1,p2,p3]).then()     //只要有一个成功 就返回
+    </script>
+</body>
+</html>
