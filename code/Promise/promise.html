@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>Promise test</p>
+    <script>
+        function loadImg (src) {
+            let promise = new Promise((resolve, reject) => {
+                let img = document.createElement('img');
+                // throw new Error("自定义错误");
+                img.onload = () => {
+                    resolve(img);
+                };
+                img.onerror = () => {
+                    // 传递参数之后可以统一在catch中捕获
+                    reject('图片加载失败');
+                }
+                img.src = src;
+            })
+            return promise;
+        }
+        // let src = 'http://www.imooc.com/static/img/index/logo_new.png';        
+        let src = 'http://www.imooc.com/static/img/index/logo_new1.png';
+        let result = loadImg(src);
+
+        // 捕获逻辑之内的错误
+        result.then(function (img) {
+            console.log(1, img.width);
+            return img;
+        }).then(function (img) {
+            console.log(1, img.height);
+        }).catch(function (error) {
+            console.log(error);
+        })
+
+
+        // 统一捕获语法错误
+        // result.then(function (img) {
+        //     console.log(1, img.width);
+        //     return img;
+        // }).then(function (img) {
+        //     console.log(1, img.height);
+        // }).catch(function (error) {
+        //     console.log(error);
+        // })
+
+        // result.then(function (img) {
+        //     console.log(1, img.width);
+        //     return img;
+        // }, function () {
+        //     console.log('error 1');
+        // }).then(function (img) {
+        //     console.log(1, img.height);
+        // })
+    </script>
+</body>
+</html>
